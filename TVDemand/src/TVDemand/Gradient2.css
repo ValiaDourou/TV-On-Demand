@@ -1,0 +1,4 @@
+.backgroundColor{
+	-fx-background-color: linear-gradient(#C79AFC, #9ACBFC),
+            radial-gradient(center 50% 50%, radius 50%, #FFFFFF33, #00000033);
+}

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="533.0" prefWidth="691.0" styleClass="backgroundColor" stylesheets="@RegisterSceneBackground.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TVDemand.ACreateEmPopUpController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="230.0" layoutY="14.0" prefHeight="27.0" prefWidth="230.0" text="Registration Form" textFill="WHITE" underline="true">
+         <font>
+            <Font name="Monospaced Regular" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="216.0" text="Last Name" textAlignment="JUSTIFY">
+         <font>
+            <Font name="Monospaced Regular" size="12.0" />
+         </font></Label>
+      <Label layoutX="14.0" layoutY="177.0" text="First Name" textAlignment="JUSTIFY">
+         <font>
+            <Font name="Monospaced Regular" size="12.0" />
+         </font></Label>
+      <Label layoutX="14.0" layoutY="254.0" text="Email / Username" textAlignment="JUSTIFY">
+         <font>
+            <Font name="Monospaced Regular" size="12.0" />
+         </font></Label>
+      <Label layoutX="14.0" layoutY="296.0" text="Address" textAlignment="JUSTIFY">
+         <font>
+            <Font name="Monospaced Regular" size="12.0" />
+         </font></Label>
+      <Label layoutX="14.0" layoutY="336.0" text="District" textAlignment="JUSTIFY">
+         <font>
+            <Font name="Monospaced Regular" size="12.0" />
+         </font></Label>
+      <Label layoutX="393.0" layoutY="179.0" text="Postal Code" textAlignment="JUSTIFY">
+         <font>
+            <Font name="Monospaced Regular" size="12.0" />
+         </font></Label>
+      <Label layoutX="393.0" layoutY="218.0" text="Phone Number" textAlignment="JUSTIFY">
+         <font>
+            <Font name="Monospaced Regular" size="12.0" />
+         </font></Label>
+      <Label layoutX="393.0" layoutY="256.0" text="City" textAlignment="JUSTIFY">
+         <font>
+            <Font name="Monospaced Regular" size="12.0" />
+         </font></Label>
+      <Label layoutX="393.0" layoutY="298.0" text="Country" textAlignment="JUSTIFY">
+         <font>
+            <Font name="Monospaced Regular" size="12.0" />
+         </font></Label>
+      <TextField fx:id="FirstNameTextField" layoutX="134.0" layoutY="174.0" />
+      <TextField fx:id="LastNameTextField" layoutX="134.0" layoutY="213.0" />
+      <TextField fx:id="EmailTextField" layoutX="134.0" layoutY="251.0" />
+      <TextField fx:id="AddressTextField" layoutX="134.0" layoutY="293.0" />
+      <TextField fx:id="DistrictTextField" layoutX="134.0" layoutY="333.0" />
+      <TextField fx:id="PCTextField" layoutX="513.0" layoutY="176.0" />
+      <TextField fx:id="PhoneNumberTextField" layoutX="513.0" layoutY="215.0" />
+      <TextField fx:id="CityTextField" layoutX="513.0" layoutY="253.0" />
+      <TextField fx:id="CountryTextField" layoutX="513.0" layoutY="295.0" />
+      <Button fx:id="cancelButton" layoutX="520.0" layoutY="489.0" mnemonicParsing="false" onAction="#cancelSceneChange" text="Cancel" />
+      <Button fx:id="registerUser" layoutX="594.0" layoutY="489.0" mnemonicParsing="false" onAction="#registerUser" text="Register" />
+      <Label fx:id="registrySuccessful" alignment="CENTER" layoutX="157.0" layoutY="54.0" prefHeight="17.0" prefWidth="377.0" />
+      <Button fx:id="closeButton" layoutX="664.0" layoutY="3.0" mnemonicParsing="false" onAction="#closeButton" text="X" textAlignment="CENTER">
+         <font>
+            <Font name="Monospaced Regular" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

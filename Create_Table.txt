@@ -1,0 +1,219 @@
+CREATE TABLE employee(
+     employee_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+     first_name VARCHAR(45) NOT NULL,
+     last_name VARCHAR(45) NOT NULL,
+     email VARCHAR(50) DEFAULT NULL,
+     address_id SMALLINT UNSIGNED NOT NULL,
+     employment_date DATETIME NOT NULL,
+     PRIMARY KEY(employee_id),
+    CONSTRAINT fk_employee_address FOREIGN KEY(address_id) REFERENCES address(address_id) ON DELETE RESTRICT ON UPDATE CASCADE);
+
+CREATE TABLE administrator(
+    admin_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+     first_name VARCHAR(45) NOT NULL,
+     last_name VARCHAR(45) NOT NULL,
+     email VARCHAR(50) DEFAULT NULL,
+     address_id SMALLINT UNSIGNED NOT NULL,
+      admin_date DATETIME NOT NULL,
+     PRIMARY KEY(admin_id),
+    CONSTRAINT fk_admin_address FOREIGN KEY(address_id) REFERENCES address(address_id) ON DELETE RESTRICT ON UPDATE CASCADE);
+
+CREATE TABLE series(
+     series_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    title VARCHAR(128) NOT NULL,
+     description TEXT DEFAULT NULL,
+    release_year YEAR DEFAULT NULL,
+     language_id TINYINT UNSIGNED NOT NULL,
+    original_language_id TINYINT UNSIGNED DEFAULT NULL,
+     seasons SMALLINT UNSIGNED DEFAULT NULL,
+     rating ENUM('G','PG','PG-13','R','NC-17') DEFAULT 'G',
+     special_features SET('Trailers','Commentaries','Deleted Scenes','Behind the Scenes') DEFAULT NULL,
+     completed ENUM('Completed','Ongoing') DEFAULT 'Ongoing',
+    totalnumofepisodes SMALLINT,
+    PRIMARY KEY (series_id),
+     CONSTRAINT fk_series_language FOREIGN KEY (language_id) REFERENCES language(language_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+     CONSTRAINT fk_series_original_language FOREIGN KEY (original_language_id) REFERENCES language(language_id) ON DELETE RESTRICT ON UPDATE CASCADE);
+
+CREATE TABLE seasons(
+     series_id SMALLINT UNSIGNED NOT NULL,
+     season_number SMALLINT UNSIGNED NOT NULL,
+    release_year YEAR DEFAULT NULL,
+     number_of_episodes SMALLINT UNSIGNED NOT NULL,
+     PRIMARY KEY (series_id,season_number),
+     CONSTRAINT fk_season_series FOREIGN KEY (series_id) REFERENCES series (series_id) ON DELETE CASCADE ON UPDATE CASCADE);
+
+CREATE TABLE series_actor(
+     actor_id SMALLINT UNSIGNED NOT NULL,
+    series_id SMALLINT UNSIGNED NOT NULL,
+     PRIMARY KEY (actor_id,series_id),
+     CONSTRAINT fk_series_actor_actor FOREIGN KEY (actor_id) REFERENCES actor (actor_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+     CONSTRAINT fk_series_actor_series FOREIGN KEY (series_id) REFERENCES series (series_id) ON DELETE RESTRICT ON UPDATE CASCADE);
+
+CREATE TABLE series_category(
+     series_id SMALLINT UNSIGNED NOT NULL,
+    category_id TINYINT UNSIGNED NOT NULL,
+     PRIMARY KEY (category_id,series_id),
+     CONSTRAINT fk_series_category_series FOREIGN KEY (series_id) REFERENCES series (series_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+     CONSTRAINT fk_series_category_category FOREIGN KEY (category_id) REFERENCES category (category_id) ON DELETE RESTRICT ON UPDATE CASCADE);
+
+CREATE TABLE log(
+     log_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,  
+     username VARCHAR(50) DEFAULT NULL,
+     date DATETIME NOT NULL,
+     state ENUM('Successful','Unsuccessful') DEFAULT 'Successful',
+     type ENUM('Insert','Update','Delete') NOT NULL,
+     table_name VARCHAR(45) NOT NULL,
+     PRIMARY KEY(log_id));
+
+CREATE TABLE film_inventory (
+     inventory_id MEDIUMINT UNSIGNED NOT NULL,
+       film_id SMALLINT UNSIGNED NOT NULL,
+       PRIMARY KEY  (inventory_id,film_id),
+     CONSTRAINT fk_film_inventory_film FOREIGN KEY (film_id) REFERENCES film (film_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+     CONSTRAINT fk_film_inventory_inventory FOREIGN KEY (inventory_id) REFERENCES inventory (inventory_id) ON DELETE RESTRICT ON UPDATE CASCADE);
+
+CREATE TABLE series_inventory (
+     inventory_id MEDIUMINT UNSIGNED NOT NULL,
+      series_id SMALLINT UNSIGNED NOT NULL,
+       PRIMARY KEY  (inventory_id,series_id),
+    CONSTRAINT fk_series_inventory_series FOREIGN KEY (series_id) REFERENCES series (series_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+     CONSTRAINT fk_series_inventory_inventory FOREIGN KEY (inventory_id) REFERENCES inventory (inventory_id) ON DELETE RESTRICT ON UPDATE CASCADE);
+
+CREATE TABLE rental (
+  rental_id int NOT NULL AUTO_INCREMENT,
+  rental_date datetime NOT NULL,
+  inventory_id mediumint unsigned NOT NULL,
+  customer_id smallint unsigned NOT NULL,
+  rental_type enum('f','s') DEFAULT NULL,
+  PRIMARY KEY (rental_id),
+  UNIQUE KEY rental_date (rental_date,inventory_id,customer_id),
+  CONSTRAINT fk_rental_customer FOREIGN KEY (customer_id) REFERENCES customer (customer_id) ON UPDATE CASCADE,
+  CONSTRAINT fk_rental_inventory FOREIGN KEY (inventory_id) REFERENCES inventory (inventory_id) ON UPDATE CASCADE
+);
+
+CREATE TABLE inventory (
+  inventory_id mediumint unsigned NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (inventory_id)
+);
+
+CREATE TABLE customer (
+  customer_id smallint unsigned NOT NULL AUTO_INCREMENT,
+  first_name varchar(45) NOT NULL,
+  last_name varchar(45) NOT NULL,
+  email varchar(50) DEFAULT NULL,
+  address_id smallint unsigned NOT NULL,
+  active tinyint NOT NULL DEFAULT 1,
+  create_date datetime NOT NULL,
+  customer_type enum('m','s','ms') NOT NULL,
+  PRIMARY KEY (customer_id),
+  CONSTRAINT fk_customer_address FOREIGN KEY (address_id) REFERENCES address (address_id) ON UPDATE CASCADE
+);
+
+CREATE TABLE country (
+  country_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  country VARCHAR(50) NOT NULL,
+  PRIMARY KEY  (country_id)
+);
+
+CREATE TABLE city (
+  city_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  city VARCHAR(50) NOT NULL,
+  country_id SMALLINT UNSIGNED NOT NULL,
+  PRIMARY KEY  (city_id),
+  CONSTRAINT `fk_city_country` FOREIGN KEY (country_id) REFERENCES country (country_id) ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+CREATE TABLE address (
+  address_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  address VARCHAR(50) NOT NULL,
+  district VARCHAR(20) DEFAULT NULL,
+  city_id SMALLINT UNSIGNED NOT NULL,
+  postal_code VARCHAR(10) DEFAULT NULL,
+  phone VARCHAR(20) NOT NULL,
+  PRIMARY KEY  (address_id),
+  CONSTRAINT `fk_address_city` FOREIGN KEY (city_id) REFERENCES city (city_id) ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+CREATE TABLE category (
+  category_id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  name VARCHAR(25) NOT NULL,
+  PRIMARY KEY  (category_id)
+);
+
+CREATE TABLE language (
+  language_id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  name CHAR(20) NOT NULL,
+  PRIMARY KEY (language_id)
+);
+
+CREATE TABLE film (
+  film_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  title VARCHAR(128) NOT NULL,
+  description TEXT DEFAULT NULL,
+  release_year YEAR DEFAULT NULL,
+  language_id TINYINT UNSIGNED NOT NULL,
+  original_language_id TINYINT UNSIGNED DEFAULT NULL,
+  length SMALLINT UNSIGNED DEFAULT NULL,
+  rating ENUM('G','PG','PG-13','R','NC-17') DEFAULT 'G',
+  special_features SET('Trailers','Commentaries','Deleted Scenes','Behind the Scenes') DEFAULT NULL,
+  PRIMARY KEY  (film_id),
+  CONSTRAINT fk_film_language FOREIGN KEY (language_id) REFERENCES language (language_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT fk_film_language_original FOREIGN KEY (original_language_id) REFERENCES language (language_id) ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+CREATE TABLE film_actor (
+  actor_id SMALLINT UNSIGNED NOT NULL,
+  film_id SMALLINT UNSIGNED NOT NULL,
+  PRIMARY KEY  (actor_id,film_id),
+  CONSTRAINT fk_film_actor_actor FOREIGN KEY (actor_id) REFERENCES actor (actor_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT fk_film_actor_film FOREIGN KEY (film_id) REFERENCES film (film_id) ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+CREATE TABLE film_category (
+  film_id SMALLINT UNSIGNED NOT NULL,
+  category_id TINYINT UNSIGNED NOT NULL,
+  PRIMARY KEY (film_id, category_id),
+  CONSTRAINT fk_film_category_film FOREIGN KEY (film_id) REFERENCES film (film_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT fk_film_category_category FOREIGN KEY (category_id) REFERENCES category (category_id) ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+CREATE TABLE payment (
+  payment_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  customer_id SMALLINT UNSIGNED NOT NULL,
+  rental_id INT DEFAULT NULL,
+  amount DECIMAL(5,2) NOT NULL,
+  payment_date DATETIME NOT NULL,
+  PRIMARY KEY  (payment_id),
+  CONSTRAINT fk_payment_rental FOREIGN KEY (rental_id) REFERENCES rental (rental_id) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT fk_payment_customer FOREIGN KEY (customer_id) REFERENCES customer (customer_id) ON DELETE RESTRICT ON UPDATE CASCADE
+ );
+
+CREATE TABLE actor (
+  actor_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  first_name VARCHAR(45) NOT NULL,
+  last_name VARCHAR(45) NOT NULL,
+  PRIMARY KEY  (actor_id)
+);
+
+CREATE TABLE prices (
+  film DECIMAL(5,2) NOT NULL DEFAULT 0.40,
+  series DECIMAL(5,2) NOT NULL DEFAULT 0.20,
+  filmseries DECIMAL(5,2) NOT NULL DEFAULT 0.30,
+  seriesfilm DECIMAL(5,2) NOT NULL DEFAULT 0.10,
+  PRIMARY KEY (film,series,filmseries,seriesfilm)
+); 
+
+CREATE TABLE toberegistered (
+  first_name VARCHAR(45) NOT NULL,
+  last_name VARCHAR(45) NOT NULL,
+  username VARCHAR(50) NOT NULL,
+  address VARCHAR(50) NOT NULL,
+  district VARCHAR(20) DEFAULT NULL,
+  postal_code VARCHAR(10) DEFAULT NULL,
+  phone VARCHAR(20) NOT NULL,
+  city VARCHAR(50) NOT NULL,
+  country VARCHAR(50) NOT NULL,
+  customer_type enum('m','s','ms') NOT NULL,
+  PRIMARY KEY ('username')
+);
+ 

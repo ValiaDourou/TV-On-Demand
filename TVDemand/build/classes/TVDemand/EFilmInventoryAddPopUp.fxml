@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+
+<DialogPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="1019.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TVDemand.EFilmInventoryAddPopUpController">
+   <content>
+      <Pane prefHeight="529.0" prefWidth="1019.0">
+         <children>
+            <Button fx:id="addButton" layoutX="936.0" layoutY="458.0" mnemonicParsing="false" onAction="#AddActor" prefHeight="25.0" prefWidth="73.0" text="Add" />
+            <Pane layoutY="483.0" prefHeight="42.0" prefWidth="1019.0">
+               <children>
+                  <Button fx:id="cancelButton" layoutX="935.0" layoutY="4.0" mnemonicParsing="false" onAction="#Cancel" prefHeight="25.0" prefWidth="74.0" text="Cancel" />
+               </children>
+            </Pane>
+            <TableView fx:id="filmTable" layoutX="32.0" layoutY="26.0" onMouseClicked="#onClick" prefHeight="467.0" prefWidth="868.0">
+              <columns>
+                <TableColumn fx:id="fid" prefWidth="58.0" text="Film ID" />
+                <TableColumn fx:id="ti" prefWidth="121.0" text="Title" />
+                  <TableColumn fx:id="de" prefWidth="102.0" text="Description" />
+                  <TableColumn fx:id="ry" prefWidth="100.0" text="Release Year" />
+                  <TableColumn fx:id="la" prefWidth="95.0" text="Language" />
+                  <TableColumn fx:id="ogla" prefWidth="127.0" text="Original language" />
+                  <TableColumn fx:id="le" prefWidth="88.0" text="Length" />
+                  <TableColumn fx:id="ra" prefWidth="48.0" text="Rating" />
+                  <TableColumn fx:id="sf" prefWidth="128.0" text="Special Features" />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
+   </content>
+</DialogPane>

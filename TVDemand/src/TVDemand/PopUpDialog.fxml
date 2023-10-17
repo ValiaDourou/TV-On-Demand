@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonType?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<DialogPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="1019.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TVDemand.PopUpDialogController">
+   <content>
+      <Pane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <GridPane layoutX="56.0" layoutY="38.0" prefHeight="430.0" prefWidth="302.0">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="215.0" minWidth="10.0" prefWidth="114.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="243.0" minWidth="10.0" prefWidth="188.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TextField fx:id="inventoryIDTF" GridPane.columnIndex="1" />
+                  <TextField fx:id="titleTF" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="descriptionTF" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="releaseyearTF" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="languageTF" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="oglanguageTF" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="noofseasonsTF" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <TextField fx:id="ratingTF" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <TextField fx:id="specialfeaturesTF" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <TextField fx:id="completedTF" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                  <TextField fx:id="totalnoofepisodesTF" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                  <Label text="Inventory ID" />
+                  <Label text="Title" GridPane.rowIndex="1" />
+                  <Label text="Description" GridPane.rowIndex="2" />
+                  <Label text="Release Year" GridPane.rowIndex="3" />
+                  <Label text="Language" GridPane.rowIndex="4" />
+                  <Label text="Original Language" GridPane.rowIndex="5" />
+                  <Label text="No. of Seasons" GridPane.rowIndex="6" />
+                  <Label text="Rating" GridPane.rowIndex="7" />
+                  <Label text="Special Features" GridPane.rowIndex="8" />
+                  <Label text="Completed" GridPane.rowIndex="9" />
+                  <Label text="Total No. of Episodes" GridPane.rowIndex="10" />
+               </children>
+            </GridPane>
+            <TableView fx:id="SeasonTable" layoutX="446.0" layoutY="50.0" prefHeight="383.0" prefWidth="478.0">
+              <columns>
+                <TableColumn fx:id="seasonno" prefWidth="166.0" text="Season No." />
+                <TableColumn fx:id="releaseyear" prefWidth="159.0" text="Release Year" />
+                  <TableColumn fx:id="noofepisodes" minWidth="0.0" prefWidth="152.0" text="No. of Episodes" />
+              </columns>
+            </TableView>
+            <Button fx:id="addButton" layoutX="934.0" layoutY="456.0" mnemonicParsing="false" onAction="#addDialog" prefHeight="25.0" prefWidth="74.0" text="Add" />
+         </children>
+      </Pane>
+   </content>
+   <buttonTypes>
+      <ButtonType fx:constant="CANCEL" />
+   </buttonTypes>
+</DialogPane>

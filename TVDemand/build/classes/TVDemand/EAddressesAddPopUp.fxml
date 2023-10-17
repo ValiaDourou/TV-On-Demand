@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<DialogPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="495.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TVDemand.EAddressesAddPopUpController">
+   <content>
+      <Pane prefHeight="125.0" prefWidth="314.0">
+         <children>
+            <Pane layoutY="455.0" prefHeight="23.0" prefWidth="614.0" />
+            <GridPane layoutX="424.0" layoutY="337.0" prefHeight="61.0" prefWidth="63.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="36.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="addCi" mnemonicParsing="false" onAction="#AddDialog" prefHeight="25.0" prefWidth="53.0" text="Add" />
+                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#Cancel" prefHeight="25.0" prefWidth="53.0" text="Cancel" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+            <GridPane layoutX="14.0" layoutY="32.0" prefHeight="118.0" prefWidth="309.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="114.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.0" minWidth="10.0" prefWidth="195.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label prefHeight="17.0" prefWidth="56.0" text="Address" />
+                  <TextField fx:id="aTF" prefHeight="25.0" prefWidth="135.0" GridPane.columnIndex="1" />
+                  <Label prefHeight="17.0" prefWidth="56.0" text="District" GridPane.rowIndex="1" />
+                  <TextField fx:id="dTF" prefHeight="25.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label prefHeight="17.0" prefWidth="78.0" text="Postal Code" GridPane.rowIndex="2" />
+                  <TextField fx:id="pcTF" prefHeight="25.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="pTF" prefHeight="25.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label prefHeight="17.0" prefWidth="56.0" text="Phone" GridPane.rowIndex="3" />
+               </children>
+            </GridPane>
+            <TableView fx:id="ciTable" layoutX="14.0" layoutY="192.0" onMouseClicked="#OnClick" prefHeight="200.0" prefWidth="383.0">
+              <columns>
+                <TableColumn fx:id="ciC" prefWidth="382.0" text="Cities" />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
+   </content>
+</DialogPane>
